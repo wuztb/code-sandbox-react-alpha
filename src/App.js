@@ -12,11 +12,23 @@ export default function App() {
     },
   ];
 
+  const pizzas2 = {
+    Salami: {
+      name: "Salami",
+      price: 12,
+    },
+    Margharita: {
+      name: "Margharita",
+      price: 9,
+    },
+  };
+
   return (
     <div className="App">
       <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2>
       <Pizza pizza={pizzas.filter((p) => p.name === "Salami")[0]} />
+      <Pizza pizza={pizzas2["Margharita"]} />
     </div>
   );
 }
