@@ -30,6 +30,15 @@ export default function FoodList() {
     loadPizzas();
   }, []);
 
+  const markAsSoldOut = (pizzaName) => {
+    setFoodData((prevData) => ({
+      //modify the pizzas: property
+      pizzas: prevData.pizzas.map((pizza) =>
+        pizza.name === pizzaName ? { ...pizza, soldout: "yes" } : pizza
+      ),
+    }));
+  };
+
   return (
     <div>
       <h1>Use a key to access a pizza in pizzas.json</h1>
@@ -50,7 +59,13 @@ export default function FoodList() {
       <h1>Loop through pizzas in food.json</h1>
       {foodData &&
         foodData.pizzas.map((pizza) => (
-          <Pizza pizza={pizza} key={pizza.name} />
+          <div key={pizza.name}>
+            <Pizza pizza={pizza} />
+            <p>Sold out: {pizza.soldout}</p>
+            <button onClick={() => markAsSoldOut(pizza.name)}>
+              Mark as Sold Out
+            </button>
+          </div>
         ))}
     </div>
   );
