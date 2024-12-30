@@ -2,3 +2,12 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.soldout {
+  background-color: #f8d7da;
+  color: #721c24;
+  text-decoration: line-through;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+}

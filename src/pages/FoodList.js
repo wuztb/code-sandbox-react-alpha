@@ -71,7 +71,7 @@ export default function FoodList() {
       <h1>Loop through pizzas in food.json</h1>
       {foodData &&
         foodData.pizzas.map((pizza) => (
-          <div key={pizza.name}>
+          <div key={pizza.name} className={pizza.soldout ? "soldout" : ""}>
             <Pizza pizza={pizza} />
             <p>Sold out: {pizza.soldout}</p>
             {pizza.soldout ? (
