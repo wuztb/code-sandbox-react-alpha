@@ -1,0 +1,10 @@
+{
+    "Salami": {
+        "name": "Salami",
+        "price": 12
+    },
+    "Margharita": {
+        "name": "Margharita",
+        "price": 9
+    }
+}
