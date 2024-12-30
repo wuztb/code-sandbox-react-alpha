@@ -80,7 +80,7 @@ export default function FoodList() {
               <>
                 <p>{pizza.status}</p>
                 <button onClick={() => removeSoldOut(pizza.name)}>
-                  Remove Soldout
+                  Remove Sold Out
                 </button>
               </>
             ) : (
