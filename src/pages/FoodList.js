@@ -34,7 +34,7 @@ export default function FoodList() {
     setFoodData((prevData) => ({
       //modify the pizzas: property
       pizzas: prevData.pizzas.map((pizza) =>
-        pizza.name === pizzaName ? { ...pizza, soldout: "yes" } : pizza
+        pizza.name === pizzaName ? { ...pizza, status: "soldout" } : pizza
       ),
     }));
   };
@@ -43,7 +43,7 @@ export default function FoodList() {
     setFoodData((prevData) => ({
       pizzas: prevData.pizzas.map((pizza) => {
         if (pizza.name === pizzaName) {
-          const { soldout, ...rest } = pizza; // Remove soldout property
+          const { status, ...rest } = pizza; // Remove soldout property
           return rest;
         }
         return pizza;
@@ -71,13 +71,18 @@ export default function FoodList() {
       <h1>Loop through pizzas in food.json</h1>
       {foodData &&
         foodData.pizzas.map((pizza) => (
-          <div key={pizza.name} className={pizza.soldout ? "soldout" : ""}>
+          <div
+            key={pizza.name}
+            className={pizza.status === "soldout" ? "soldout" : ""}
+          >
             <Pizza pizza={pizza} />
-            <p>Sold out: {pizza.soldout}</p>
-            {pizza.soldout ? (
-              <button onClick={() => removeSoldOut(pizza.name)}>
-                Remove Soldout
-              </button>
+            {pizza.status === "soldout" ? (
+              <>
+                <p>{pizza.status}</p>
+                <button onClick={() => removeSoldOut(pizza.name)}>
+                  Remove Soldout
+                </button>
+              </>
             ) : (
               <button onClick={() => markAsSoldOut(pizza.name)}>
                 Mark as Sold Out
