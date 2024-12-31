@@ -20,9 +20,25 @@ export default function PizzaList() {
     loadPizzas();
   }, []);
 
-  const markAsSoldOut = (pizzaName) => {};
+  const markAsSoldOut = (pizzaName) => {
+    setPizzaData((prevData) => ({
+      ...prevData,
+      [pizzaName]: {
+        ...prevData[pizzaName],
+        status: "soldout",
+      },
+    }));
+  };
 
-  const removeSoldOut = (pizzaName) => {};
+  const removeSoldOut = (pizzaName) => {
+    setPizzaData((prevData) => {
+      const { status, ...pizzaDetails } = prevData[pizzaName]; // Destructure to exclude `status`
+      return {
+        ...prevData,
+        [pizzaName]: pizzaDetails,
+      };
+    });
+  };
 
   return (
     <div>
