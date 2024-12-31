@@ -50,7 +50,10 @@ export default function PizzaList() {
         Object.entries(pizzaData).map(([key, pizza]) => (
           <div
             key={pizza.name}
-            className={pizza.status === "soldout" ? "soldout" : ""}
+            /* Use Template Literals (${}) When: You need to combine multiple classes: */
+            className={`pizza-item ${
+              pizza.status === "soldout" ? "soldout" : ""
+            }`}
           >
             <Pizza pizza={pizza} />
             {pizza.status === "soldout" ? (

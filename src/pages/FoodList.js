@@ -46,10 +46,12 @@ export default function FoodList() {
       <h1>Filter in food.json</h1>
       {foodData && (
         <>
+          <span>Filter Option 1: </span>
           <Pizza
             pizza={foodData.pizzas.filter((p) => p.name === "Prosciutto")[0]}
           />
           {/* another option to achieve the same filter */}
+          <span>Filter Option 2: </span>
           <Pizza
             pizza={foodData["pizzas"].filter((p) => p.name === "Prosciutto")[0]}
           />
