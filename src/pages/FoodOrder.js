@@ -68,6 +68,19 @@ export default function FoodOrder() {
   const [quantity, setQuantity] = useState(1);
   const [addedItemMsg, setAddedItemMsg] = useState("");
   const [addedItems, setAddedItems] = useState([]);
+  const [sortBy, setSortBy] = useState("input"); //by default sorted in the sequence they were input, could also be description.
+
+  let sortedItems;
+  if (sortBy === "input") sortedItems = addedItems;
+  //sort is mutating the array so we need slice to first copy it.
+  if (sortBy === "description")
+    sortedItems = addedItems
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+  if (sortBy === "checked")
+    sortedItems = addedItems
+      .slice()
+      .sort((a, b) => Number(a.checked) - Number(b.checked));
 
   //benefits of using a form submit instead of just a button event:
   //Automatically handles the "Enter" key to trigger submission, A <form> is the semantic HTML element for data submission.
@@ -138,10 +151,17 @@ export default function FoodOrder() {
       <div>{addedItemMsg}</div>
       <div>
         <ListAddedItems
-          items={addedItems}
+          items={sortedItems}
           onDeleteItem={handleDelteItem}
           onToggleItem={handleToggleItem}
         />
+      </div>
+      <div>
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+          <option value="input">Sort by input order</option>
+          <option value="description">Sort by description</option>
+          <option value="checked">Sort by checked status</option>
+        </select>
       </div>
       <Stats items={addedItems} />
     </div>
