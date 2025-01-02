@@ -1,23 +1,35 @@
 import { useState, useEffect } from "react";
 
-function DisplayAddedItem({ item, handleRemove }) {
+function DisplayAddedItem({ item, onDeleteItem, onToggleItem }) {
   //calling the passed function to handle state in the parent component which manages the items
-  function handleRemoveLocal(e) {
-    //console.log(e);
-    handleRemove(item);
+  //lifting up state to parent component
+  /*
+  function onDeleteItemLocal() {
+    onDeleteItem(item);
   }
-
+  */
   return (
     <li>
+      <input
+        type="checkbox"
+        value={item.checked}
+        onChange={() => {
+          onToggleItem(item.id);
+        }}
+      />
       <span>
         {item.description} {item.quantity}
       </span>
-      <button onClick={handleRemoveLocal}>X</button>
+      {/* would not work because would only pass the event as an argument, 
+      we need to pass the item <button onClick={onDeleteItem}>X</button> */}
+      {/* would not work if we need more local logic 
+      we need to pass the item <button onClick={onDeleteItemLocal}>X</button> */}
+      <button onClick={() => onDeleteItem(item)}>X</button>
     </li>
   );
 }
 
-function ListAddedItems({ items, handleRemove }) {
+function ListAddedItems({ items, onDeleteItem, onToggleItem }) {
   return (
     <div>
       <ul>
@@ -25,7 +37,8 @@ function ListAddedItems({ items, handleRemove }) {
           <DisplayAddedItem
             item={item}
             key={item.id}
-            handleRemove={handleRemove}
+            onDeleteItem={onDeleteItem}
+            onToggleItem={onToggleItem}
           />
         ))}
       </ul>
@@ -40,6 +53,7 @@ export default function FoodOrder() {
   const [quantity, setQuantity] = useState(1);
   const [addedItemMsg, setAddedItemMsg] = useState("");
   const [addedItems, setAddedItems] = useState([]);
+  const numItem = addedItems.length; //state can be dervided. Never use state variables for stated that can be calculated or derived to avoud complexit and re-renders.
 
   //benefits of using a form submit instead of just a button event:
   //Automatically handles the "Enter" key to trigger submission, A <form> is the semantic HTML element for data submission.
@@ -69,9 +83,17 @@ export default function FoodOrder() {
     setAddedItems((currentItems) => [...currentItems, newItem]);
   }
 
-  function handleRemove(itemToRemove) {
+  function handleDelteItem(itemToDelete) {
     setAddedItems((currentItems) =>
-      currentItems.filter((item) => item !== itemToRemove)
+      currentItems.filter((item) => item.id !== itemToDelete.id)
+    );
+  }
+
+  function handleToggleItem(id) {
+    setAddedItems((currentItems) =>
+      currentItems.map((item) =>
+        item.id === id ? { ...item, checked: !item.checked } : item
+      )
     );
   }
 
@@ -101,7 +123,11 @@ export default function FoodOrder() {
       </form>
       <div>{addedItemMsg}</div>
       <div>
-        <ListAddedItems items={addedItems} handleRemove={handleRemove} />
+        <ListAddedItems
+          items={addedItems}
+          onDeleteItem={handleDelteItem}
+          onToggleItem={handleToggleItem}
+        />
       </div>
     </div>
   );
