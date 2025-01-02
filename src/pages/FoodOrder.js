@@ -1,5 +1,20 @@
 import { useState, useEffect } from "react";
 
+function Stats({ items }) {
+  //if there are no items return a message.
+  if (!items.length) return <div>You need to add items.</div>;
+  //if there are items continue with the logic below.
+  //state can be dervided. Never use state variables for stated that can be calculated or derived to avoud complexit and re-renders.
+  const numItems = items.length;
+  const numChecked = items.filter((item) => item.checked).length;
+  const percentage = Math.round((numChecked / numItems) * 100);
+  return (
+    <div>
+      You have {numItems} items and checked {numChecked} ({percentage}%).
+    </div>
+  );
+}
+
 function DisplayAddedItem({ item, onDeleteItem, onToggleItem }) {
   //calling the passed function to handle state in the parent component which manages the items
   //lifting up state to parent component
@@ -53,7 +68,6 @@ export default function FoodOrder() {
   const [quantity, setQuantity] = useState(1);
   const [addedItemMsg, setAddedItemMsg] = useState("");
   const [addedItems, setAddedItems] = useState([]);
-  const numItem = addedItems.length; //state can be dervided. Never use state variables for stated that can be calculated or derived to avoud complexit and re-renders.
 
   //benefits of using a form submit instead of just a button event:
   //Automatically handles the "Enter" key to trigger submission, A <form> is the semantic HTML element for data submission.
@@ -129,6 +143,7 @@ export default function FoodOrder() {
           onToggleItem={handleToggleItem}
         />
       </div>
+      <Stats items={addedItems} />
     </div>
   );
 }
