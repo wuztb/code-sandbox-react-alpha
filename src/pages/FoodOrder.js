@@ -1,11 +1,45 @@
 import { useState, useEffect } from "react";
 
+function DisplayAddedItem({ item, handleRemove }) {
+  //calling the passed function to handle state in the parent component which manages the items
+  function handleRemoveLocal(e) {
+    //console.log(e);
+    handleRemove(item);
+  }
+
+  return (
+    <li>
+      <span>
+        {item.description} {item.quantity}
+      </span>
+      <button onClick={handleRemoveLocal}>X</button>
+    </li>
+  );
+}
+
+function ListAddedItems({ items, handleRemove }) {
+  return (
+    <div>
+      <ul>
+        {items.map((item) => (
+          <DisplayAddedItem
+            item={item}
+            key={item.id}
+            handleRemove={handleRemove}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function FoodOrder() {
   //Controlled elements in React are form elements (e.g., <input>, <textarea>, <select>) where React state controls the element's value.
   //The value of the element is determined by React's state or props, not the DOM.
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [addedItem, setAddedItem] = useState("");
+  const [addedItemMsg, setAddedItemMsg] = useState("");
+  const [addedItems, setAddedItems] = useState([]);
 
   //benefits of using a form submit instead of just a button event:
   //Automatically handles the "Enter" key to trigger submission, A <form> is the semantic HTML element for data submission.
@@ -18,7 +52,7 @@ export default function FoodOrder() {
       quantity,
       id: Date.now(),
     };
-    console.log(newItem);
+    //console.log(newItem);
     handleAddItem(newItem);
 
     setDescription("");
@@ -26,8 +60,18 @@ export default function FoodOrder() {
   }
 
   function handleAddItem(newItem) {
-    setAddedItem(
+    setAddedItemMsg(
       `The item ${newItem.description} has been added with a quantity of ${newItem.quantity}`
+    );
+    //in react we are not allowed to mutate state, React relies on immutable state to track changes efficiently.
+    //React is all about immutability, never do this for state: setAddedItems(currentItems => currentItems.push(newItem));
+    //Instead return a new Array and use spread.
+    setAddedItems((currentItems) => [...currentItems, newItem]);
+  }
+
+  function handleRemove(itemToRemove) {
+    setAddedItems((currentItems) =>
+      currentItems.filter((item) => item !== itemToRemove)
     );
   }
 
@@ -55,7 +99,10 @@ export default function FoodOrder() {
         />
         <button>ADD</button>
       </form>
-      <div>{addedItem}</div>
+      <div>{addedItemMsg}</div>
+      <div>
+        <ListAddedItems items={addedItems} handleRemove={handleRemove} />
+      </div>
     </div>
   );
 }
