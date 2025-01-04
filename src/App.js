@@ -12,7 +12,7 @@ export default function App() {
           <h2>My Header</h2>
         </div>
         <div className="menu">
-          <a href="page1">Page 1 pizza.json fun</a>
+          <a href="page1">Page 1 pizza.json</a>
           <br />
           <a href="page2">Page 2 food.json</a>
           <br />
