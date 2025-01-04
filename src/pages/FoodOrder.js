@@ -124,6 +124,13 @@ export default function FoodOrder() {
     );
   }
 
+  function handleClearList() {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete all items?"
+    );
+    if (confirmed) setAddedItems([]);
+  }
+
   return (
     <div>
       <form className="add-form" onSubmit={handleSubmit}>
@@ -162,6 +169,7 @@ export default function FoodOrder() {
           <option value="description">Sort by description</option>
           <option value="checked">Sort by checked status</option>
         </select>
+        <button onClick={handleClearList}>Clear List</button>
       </div>
       <Stats items={addedItems} />
     </div>
