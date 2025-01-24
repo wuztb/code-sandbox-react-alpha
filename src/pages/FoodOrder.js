@@ -184,11 +184,9 @@ export default function FoodOrder() {
       </div>
       <Stats items={addedItems} />
       <div>
-        {showAddInfo ? (
-          <button onClick={handleShowAddInfo}>Hide add info</button>
-        ) : (
-          <button onClick={handleShowAddInfo}>Show add info</button>
-        )}
+        <button onClick={handleShowAddInfo}>
+          {showAddInfo ? "Hide add info" : "show add info"}
+        </button>
         {showAddInfo && (
           <AdditionalInfo>This is additional info</AdditionalInfo>
         )}
