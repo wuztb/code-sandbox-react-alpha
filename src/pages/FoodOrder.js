@@ -61,6 +61,10 @@ function ListAddedItems({ items, onDeleteItem, onToggleItem }) {
   );
 }
 
+function AdditionalInfo({ children }) {
+  return <p>{children}</p>;
+}
+
 export default function FoodOrder() {
   //Controlled elements in React are form elements (e.g., <input>, <textarea>, <select>) where React state controls the element's value.
   //The value of the element is determined by React's state or props, not the DOM.
@@ -69,6 +73,7 @@ export default function FoodOrder() {
   const [addedItemMsg, setAddedItemMsg] = useState("");
   const [addedItems, setAddedItems] = useState([]);
   const [sortBy, setSortBy] = useState("input"); //by default sorted in the sequence they were input, could also be description.
+  const [showAddInfo, setShowAddInfo] = useState(false);
 
   let sortedItems;
   if (sortBy === "input") sortedItems = addedItems;
@@ -131,6 +136,12 @@ export default function FoodOrder() {
     if (confirmed) setAddedItems([]);
   }
 
+  /* (x) => !x: This is an anonymous function that takes the current value of showAddInfo (represented by x) and returns its negation.
+  When you call setShowAddInfo((x) => !x), React will update the showAddInfo state to its opposite value:  */
+  function handleShowAddInfo() {
+    setShowAddInfo((x) => !x);
+  }
+
   return (
     <div>
       <form className="add-form" onSubmit={handleSubmit}>
@@ -156,7 +167,7 @@ export default function FoodOrder() {
         <button>ADD</button>
       </form>
       <div>{addedItemMsg}</div>
-      <div>
+      <div style={{ display: "grid", placeItems: "center" }}>
         <ListAddedItems
           items={sortedItems}
           onDeleteItem={handleDelteItem}
@@ -172,6 +183,16 @@ export default function FoodOrder() {
         <button onClick={handleClearList}>Clear List</button>
       </div>
       <Stats items={addedItems} />
+      <div>
+        {showAddInfo ? (
+          <button onClick={handleShowAddInfo}>Hide add info</button>
+        ) : (
+          <button onClick={handleShowAddInfo}>Show add info</button>
+        )}
+        {showAddInfo && (
+          <AdditionalInfo>This is additional info</AdditionalInfo>
+        )}
+      </div>
     </div>
   );
 }
