@@ -2,6 +2,7 @@ import FoodList from "./pages/FoodList";
 import FoodOrder from "./pages/FoodOrder";
 import PizzaList from "./pages/PizzaList";
 import DummyJson from "./pages/DummyJson";
+import AppTravelList from "./pages/travel-list/AppTravelList";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./styles.css";
 
@@ -20,6 +21,8 @@ export default function App() {
           <a href="page3">Page 3 form fun</a>
           <br />
           <a href="pageDummyJson">Dummy Jason from API</a>
+          <br />
+          <a href="pageTravelList">Travel-List</a>
         </div>
         <div className="content">
           <Router>
@@ -28,6 +31,7 @@ export default function App() {
               <Route path="page2" element={<FoodList />} />
               <Route path="page3" element={<FoodOrder />} />
               <Route path="pageDummyJson" element={<DummyJson />} />
+              <Route path="pageTravelList" element={<AppTravelList />} />
             </Routes>
           </Router>
         </div>
