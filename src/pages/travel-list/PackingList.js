@@ -11,11 +11,10 @@ export default function PackingList({
 
   let sortedItems;
   if (sortBy === "input") sortedItems = items;
-  if (sortBy === "discription")
+  if (sortBy === "description")
     sortedItems = items
       .slice()
-      .sort((a, b) => a.description.localCompare(b.description));
-
+      .sort((a, b) => a.description.localeCompare(b.description));
   if (sortBy === "packed")
     sortedItems = items
       .slice()
@@ -37,7 +36,7 @@ export default function PackingList({
       <div className="actions">
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="input">Sort by input order</option>
-          <option value="discription">Sort by discription</option>
+          <option value="description">Sort by description</option>
           <option value="packed">Sort by packed status</option>
         </select>
         <button onClick={onClearItems}>Clear list</button>

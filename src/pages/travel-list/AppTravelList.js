@@ -38,7 +38,7 @@ export default function AppTravelList() {
   }
 
   return (
-    <div>
+    <div className="travel-container">
       <Logo />
       <Form onAddItems={handleAddItems} />
       <PackingList
