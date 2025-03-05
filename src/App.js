@@ -3,6 +3,7 @@ import FoodOrder from "./pages/FoodOrder";
 import PizzaList from "./pages/PizzaList";
 import DummyJson from "./pages/DummyJson";
 import AppTravelList from "./pages/travel-list/AppTravelList";
+import AppEatNSplit from "./pages/eat-n-split/AppEatNSplit";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./styles.css";
 
@@ -23,6 +24,8 @@ export default function App() {
           <a href="pageDummyJson">Dummy Jason from API</a>
           <br />
           <a href="pageTravelList">Travel-List</a>
+          <br />
+          <a href="pageEatNSplit">Eat-n-Split</a>
         </div>
         <div className="content">
           <Router>
@@ -32,6 +35,7 @@ export default function App() {
               <Route path="page3" element={<FoodOrder />} />
               <Route path="pageDummyJson" element={<DummyJson />} />
               <Route path="pageTravelList" element={<AppTravelList />} />
+              <Route path="pageEatNSplit" element={<AppEatNSplit />} />
             </Routes>
           </Router>
         </div>
