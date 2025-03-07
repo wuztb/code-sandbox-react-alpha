@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./styles.css";
 
 const initialFriends = [
   {
@@ -62,7 +63,7 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className="app-eat-split">
       <div className="sidebar">
         <FriendsList
           friends={friends}

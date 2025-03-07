@@ -1,0 +1,159 @@
+.app-eat-split {
+  --color-lightest: #fff4e6;
+  --color-light: #ffe8cc;
+  --color-medium: #ffa94d;
+  --color-dark: #ff922b;
+
+  font-size: 62.5%; /* Assuming you still want rem units */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  min-height: 66vh;
+  display: grid;
+  grid-template-columns: 34rem 44rem;
+  column-gap: 4rem;
+  align-items: start;
+
+  color: #495057; /* Text color within the app */
+}
+
+.app-eat-split * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-eat-split .button {
+  background-color: var(--color-medium);
+  color: #343a40;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.app-eat-split .button:hover {
+  background-color: var(--color-dark);
+}
+
+.app-eat-split .sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.app-eat-split .sidebar li {
+  display: grid;
+  grid-template-columns: 4.8rem 1fr auto;
+  align-items: center;
+  column-gap: 1.6rem;
+
+  padding: 1.2rem;
+  border-radius: 7px;
+  transition: 0.5s;
+}
+
+.app-eat-split .selected,
+.app-eat-split .sidebar li:hover {
+  background-color: var(--color-lightest);
+}
+
+.app-eat-split .sidebar li img {
+  border-radius: 50%;
+  width: 100%;
+  grid-row: span 2;
+}
+
+.app-eat-split .sidebar li h3 {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.app-eat-split .sidebar li p {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.app-eat-split .sidebar li .button {
+  grid-row: span 2;
+  grid-column: 3;
+}
+
+.app-eat-split .sidebar > .button {
+  float: right;
+  margin-right: 1.2rem;
+}
+
+.app-eat-split .green {
+  color: #66a80f;
+}
+
+.app-eat-split .red {
+  color: #e03131;
+}
+
+.app-eat-split form {
+  font-size: 1.6rem;
+  display: grid;
+  align-items: center;
+  gap: 1.2rem;
+
+  background-color: var(--color-lightest);
+  border-radius: 7px;
+}
+
+.app-eat-split .form-add-friend {
+  grid-template-columns: 1fr 1.5fr;
+  margin-bottom: 1.6rem;
+  padding: 1.2rem;
+}
+.app-eat-split .form-split-bill {
+  grid-template-columns: 1fr 12rem;
+  padding: 3.2rem 4rem;
+}
+
+.app-eat-split label {
+  font-weight: 500;
+}
+
+.app-eat-split label::first-letter {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 1.8rem;
+}
+
+.app-eat-split input,
+.app-eat-split select {
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+  text-align: center;
+  border: 1px solid var(--color-light);
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.app-eat-split input:focus,
+.app-eat-split select:focus {
+  outline: none;
+  border: 1px solid var(--color-dark);
+}
+
+.app-eat-split form .button {
+  margin-top: 0.6rem;
+  grid-column: 2;
+}
+
+.app-eat-split form h2 {
+  grid-column: 1 / -1;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.6rem;
+}
