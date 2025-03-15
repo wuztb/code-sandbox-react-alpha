@@ -35,7 +35,6 @@
   }
 
   .list {
-    height: 68vh;
     background-color: #5a3e2b;
     color: #ffebb3;
     display: flex;
@@ -79,7 +78,5 @@
   .stats {
     background-color: #76c7ad;
     text-align: center;
-    font-weight: 700;
-    padding: 3.2rem 0;
   }
 }
