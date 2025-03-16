@@ -4,6 +4,7 @@ import PizzaList from "./pages/PizzaList";
 import DummyJson from "./pages/DummyJson";
 import AppTravelList from "./pages/travel-list/AppTravelList";
 import AppEatNSplit from "./pages/eat-n-split/AppEatNSplit";
+import AppUsePopcorn from "./pages/usepopcorn/AppUsePopcorn";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./styles.css";
 
@@ -26,6 +27,8 @@ export default function App() {
           <a href="pageTravelList">Travel-List</a>
           <br />
           <a href="pageEatNSplit">Eat-n-Split</a>
+          <br />
+          <a href="usepopcorn">UsePopcorn</a>
         </div>
         <div className="content">
           <Router>
@@ -36,6 +39,7 @@ export default function App() {
               <Route path="pageDummyJson" element={<DummyJson />} />
               <Route path="pageTravelList" element={<AppTravelList />} />
               <Route path="pageEatNSplit" element={<AppEatNSplit />} />
+              <Route path="usepopcorn" element={<AppUsePopcorn />} />
             </Routes>
           </Router>
         </div>
